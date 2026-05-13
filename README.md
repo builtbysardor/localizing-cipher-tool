@@ -1,167 +1,185 @@
 <div align="center">
 
-```
- ██████╗██████╗ ██╗   ██╗██████╗ ████████╗ █████╗ ██╗   ██╗ █████╗ ██╗   ██╗██╗  ████████╗
-██╔════╝██╔══██╗╚██╗ ██╔╝██╔══██╗╚══██╔══╝██╔══██╗██║   ██║██╔══██╗██║   ██║██║  ╚══██╔══╝
-██║     ██████╔╝ ╚████╔╝ ██████╔╝   ██║   ███████║██║   ██║███████║██║   ██║██║     ██║
-██║     ██╔══██╗  ╚██╔╝  ██╔═══╝    ██║   ██╔══██║╚██╗ ██╔╝██╔══██║██║   ██║██║     ██║
-╚██████╗██║  ██║   ██║   ██║        ██║   ██║  ██║ ╚████╔╝ ██║  ██║╚██████╔╝███████╗██║
- ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝        ╚═╝   ╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝
-```
+# 🔐 CryptaVault — Interactive Classical Cipher Tool
 
-### 🔐 Interactive Classical Cipher Tool
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/Canvas_API-2D-FF6B6B?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/License-MIT-8B5CF6?style=for-the-badge" />
+</p>
 
-*Encrypt. Decrypt. Visualize. Learn.*
+<p align="center">
+  <img src="https://img.shields.io/github/stars/builtbysardor/localizing-cipher-tool?style=flat-square" />
+  <img src="https://img.shields.io/github/forks/builtbysardor/localizing-cipher-tool?style=flat-square" />
+  <img src="https://img.shields.io/badge/Dependencies-Zero-00F0FF?style=flat-square" />
+  <img src="https://img.shields.io/badge/Load_Time-Under_100ms-22C55E?style=flat-square" />
+  <img src="https://img.shields.io/badge/Animations-60fps-blueviolet?style=flat-square" />
+</p>
 
----
+<br/>
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![License: MIT](https://img.shields.io/badge/License-MIT-8B5CF6?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
+> **Encrypt. Decrypt. Visualize. Learn.**  
+> Caesar & Vigenère ciphers with a real-time animated cipher wheel, interactive Vigenère table,  
+> and 2,000 years of cryptography history — all in a single HTML file. Zero dependencies.
 
-[![No Dependencies](https://img.shields.io/badge/Dependencies-Zero-00F0FF?style=for-the-badge&logo=checkmarx&logoColor=white)]()
-[![Canvas API](https://img.shields.io/badge/Canvas-2D%20API-FF6B6B?style=for-the-badge&logo=html5&logoColor=white)]()
-[![Google Fonts](https://img.shields.io/badge/Google-Fonts-4285F4?style=for-the-badge&logo=google&logoColor=white)]()
-[![Performance](https://img.shields.io/badge/Load%20Time-Under%20100ms-22C55E?style=for-the-badge&logo=speedtest&logoColor=white)]()
+<br/>
+
+**[🚀 Get Started](#-getting-started) • [✨ Features](#-features) • [📚 Education](#-educational-context) • [🛠 Tech Stack](#️-tech-stack)**
 
 </div>
 
 ---
 
-## 🌟 Overview
+## 📸 Preview
 
-**CryptaVault** is a premium, interactive web application that brings classical cryptography to life. Encrypt and decrypt messages using Caesar and Vigenere ciphers, watch the cipher wheel spin in real time, and explore 2,000 years of secret writing history — all inside a sleek, glassmorphic dark-themed interface with zero external dependencies.
+<div align="center">
+
+| Caesar Cipher | Vigenère Cipher |
+|:---:|:---:|
+| ![Caesar](assets/screenshot_caesar.png) | ![Vigenere](assets/screenshot_vigenere.png) |
+| *Shift slider + step-by-step animation* | *Keyword chips + interactive table* |
+
+| Cipher Wheel | Timeline |
+|:---:|:---:|
+| ![Wheel](assets/screenshot_wheel.png) | ![Timeline](assets/screenshot_timeline.png) |
+| *Real-time rotating cipher wheel* | *2,000 years of crypto history* |
+
+</div>
 
 ---
 
 ## ✨ Features
 
 ### 🔑 Caesar Cipher
-- **Encrypt & Decrypt** messages with a single click
-- **Adjustable shift slider** (1–25) with `+` / `−` buttons for precise control
-- **Live step-by-step visualization** — see each letter transform individually with staggered animation
-- **Character counter** updates in real time as you type
-- **One-click copy** — result copied to clipboard instantly
+- Encrypt & decrypt with a single click
+- Adjustable shift slider (1–25) with `+` / `−` buttons
+- **Live step-by-step visualization** — watch each letter transform with staggered animation
+- Real-time character counter
+- One-click copy to clipboard
 
-### 🗝️ Vigenere Cipher
-- **Keyword-based encryption** using a polyalphabetic substitution scheme
-- **Live keyword display** — each letter of the key appears as animated chips as you type
-- **Interactive Vigenere table** — highlights the exact rows and cells used in the current encryption
-- **Encrypt & Decrypt** mode toggle
-- **One-click copy** for results
+### 🗝️ Vigenère Cipher
+- Keyword-based polyalphabetic encryption
+- **Live keyword display** — animated letter chips as you type
+- **Interactive Vigenère table** — highlights exact rows/cells used in current encryption
+- Encrypt & Decrypt mode toggle
+- One-click copy
 
 ### 🎡 Cipher Wheel Visualizer
-- **Animated cipher wheel** rotates in real time as you adjust the shift value
-- Type any letter and watch it transform on the wheel instantly
-- **Full alphabet mapping grid** — shows all 26 letter mappings at once, updates live with shift changes
+- **Animated cipher wheel** rotates in real time as you adjust the shift
+- Type any letter → watch it transform on the wheel instantly
+- Full 26-letter mapping grid updates live
 
 ### 📜 Cryptography Timeline
 - Interactive history from **58 BC to present day**
-- Covers: Julius Caesar, Al-Kindi's frequency analysis, Vigenere cipher, Kasiski examination, Enigma machine, and modern AES/RSA
-- Scroll-triggered animations — each card fades in as you reach it
+- Covers: Julius Caesar · Al-Kindi · Vigenère · Kasiski · Enigma · AES/RSA
+- Scroll-triggered fade-in animations for each card
 
 ---
 
-## 🎨 User Experience (UX)
+## 🎨 Design & UX
 
-### Visual Design
-- **Dark glassmorphism theme** — frosted glass cards on a deep dark background
-- **Animated matrix background** — falling cipher characters create an immersive atmosphere
-- **Glowing radial backgrounds** — three ambient glow orbs for depth
-- **Gradient typography** — cyan-to-purple gradient headings
-
-### Interactions & Animations
-- **Hero cipher wheel** auto-rotates with three independent letter rings
-- **Animated counters** — statistics count up from zero when they enter the viewport
-- **Scroll fade-in** — all sections animate in smoothly as the user scrolls
-- **Button particle effects** on click
-- **Mode toggle** buttons switch between Encrypt/Decrypt with visual feedback
-- **Copy button** shows a "copied" state animation with a 1.5s timeout
-
-### Responsive Design
-- Fully responsive layout adapts from mobile to widescreen
-- **Hamburger menu** for mobile navigation
-- Grid workspace switches to single-column on small screens
-
-### Performance
-- **Zero external dependencies** — no React, no Vue, no jQuery
-- Single HTML + CSS + JS — loads in under 100ms
-- All animations use `requestAnimationFrame` for smooth 60fps rendering
+```
+Theme:        Dark glassmorphism — frosted glass cards on deep dark background
+Background:   Animated matrix with falling cipher characters
+Typography:   Cyan-to-purple gradient headings
+Animations:   60fps via requestAnimationFrame — GPU accelerated
+Performance:  Loads in under 100ms — zero external dependencies
+Responsive:   Mobile hamburger menu · single-column grid on small screens
+```
 
 ---
 
 ## 🛠️ Tech Stack
 
 | Technology | Usage |
-|------------|-------|
-| ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white&style=flat) HTML5 | Semantic structure, Canvas elements |
-| ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white&style=flat) CSS3 | Glassmorphism, animations, grid/flex layouts |
-| ![JS](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black&style=flat) Vanilla JS | Cipher logic, DOM manipulation, Canvas 2D API |
-| ![Google](https://img.shields.io/badge/-Google%20Fonts-4285F4?logo=google&logoColor=white&style=flat) Google Fonts | Inter + JetBrains Mono typefaces |
-| Canvas 2D API | Cipher wheel rendering and real-time animation |
-| IntersectionObserver API | Scroll-triggered animations and counters |
+|-----------|-------|
+| HTML5 | Semantic structure, Canvas elements |
+| CSS3 | Glassmorphism, animations, grid/flex layouts |
+| Vanilla JS (ES6+) | Cipher logic, DOM manipulation, Canvas 2D API |
+| Canvas 2D API | Cipher wheel rendering & animation |
+| IntersectionObserver API | Scroll-triggered animations & counters |
 | Clipboard API | One-click copy functionality |
+| Google Fonts | Inter + JetBrains Mono typefaces |
 
 ---
 
 ## 🚀 Getting Started
 
-No installation required. Just open the file:
+**No installation required.** Open the file directly in any modern browser:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/cryptavault.git
-
-# Navigate to the project
-cd cryptavault/cipher-tool
+git clone https://github.com/builtbysardor/localizing-cipher-tool.git
+cd localizing-cipher-tool/cipher-tool
 
 # Open in browser
-open index.html
-# or on Linux:
-xdg-open index.html
+open index.html          # macOS
+xdg-open index.html      # Linux
+start index.html         # Windows
 ```
+
+Or simply download `index.html` and open it — it's fully self-contained.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-cipher-tool/
-├── index.html      # Main application — all markup and structure
-├── style.css       # Design system — tokens, glassmorphism, animations
-└── script.js       # Cipher engine — Caesar, Vigenere, Canvas visualizer
+localizing-cipher-tool/
+└── cipher-tool/
+    ├── index.html      # Complete app — all markup & structure
+    ├── style.css       # Design system — tokens, glassmorphism, animations
+    └── script.js       # Cipher engine — Caesar, Vigenère, Canvas visualizer
 ```
-
----
-
-## 🔒 Security Disclaimer
-
-> ⚠️ **Educational purposes only.**
->
-> Caesar and Vigenere ciphers are classical ciphers from the pre-computer era. They are **not cryptographically secure** and should never be used to protect real sensitive data. For actual security needs, use modern encryption standards such as **AES-256** or **RSA**.
 
 ---
 
 ## 📚 Educational Context
 
-This tool covers the following cryptographic concepts:
+This tool covers these cryptographic concepts:
 
-- **Substitution ciphers** — replacing each letter with another
-- **Monoalphabetic ciphers** — Caesar (fixed single shift)
-- **Polyalphabetic ciphers** — Vigenere (multiple shifts via keyword)
-- **Frequency analysis** — Al-Kindi's technique for breaking ciphers
-- **Key length analysis** — Kasiski examination for breaking Vigenere
-- **Modern evolution** — how classical ideas led to Enigma and then AES
+| Concept | Description |
+|---------|-------------|
+| **Substitution ciphers** | Replacing each letter with another |
+| **Monoalphabetic ciphers** | Caesar — fixed single shift |
+| **Polyalphabetic ciphers** | Vigenère — multiple shifts via keyword |
+| **Frequency analysis** | Al-Kindi's technique for breaking ciphers |
+| **Key length analysis** | Kasiski examination for Vigenère |
+| **Modern evolution** | From Enigma → DES → AES |
 
 ---
 
-## 🧑‍💻 Author
+## 🔮 Roadmap
 
-**builtbysardor**
+- [ ] 🔤 **More ciphers** — Atbash, Rail Fence, Beaufort, Playfair
+- [ ] 📊 **Frequency analysis tool** — letter frequency visualization
+- [ ] 🧩 **Cipher breaker** — auto-break Caesar with frequency analysis
+- [ ] 🌍 **Multi-language** — support non-ASCII alphabets (Cyrillic, Arabic)
+- [ ] 🎮 **Cipher challenge mode** — decode mystery messages game
+- [ ] 📱 **PWA** — installable as a mobile app
+
+---
+
+## ⚠️ Security Disclaimer
+
+> Classical ciphers are **not cryptographically secure**.  
+> For real data protection, use modern standards: **AES-256** or **RSA**.  
+> This tool is for **educational purposes only**.
 
 ---
 
 ## 📄 License
 
 MIT License — free to use, modify, and distribute with attribution.
+
+---
+
+<div align="center">
+
+**Built with ❤️ by [Sardor Buriyev](https://github.com/builtbysardor)**
+
+⭐ **Star this repo if CryptaVault helped you learn cryptography!**
+
+</div>
