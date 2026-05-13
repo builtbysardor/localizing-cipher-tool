@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive Caesar &amp; Vigenere Cipher Tool — encrypt, decrypt, and explore the history of classical cryptography with beautiful visualizations.">
+    <title>CryptaVault — Caesar &amp; Vigenere Cipher Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <canvas id="matrixCanvas"></canvas>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <div class="brand-icon">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" stroke="url(#navGrad)" stroke-width="2" fill="none"/>
+                    <path d="M14 8l-6 3v6l6 3 6-3v-6l-6-3z" fill="url(#navGrad)" opacity="0.3"/>
+                    <circle cx="14" cy="14" r="3" fill="url(#navGrad)"/>
+                    <defs><linearGradient id="navGrad" x1="0" y1="0" x2="28" y2="28">
+                        <stop stop-color="#00F0FF"/><stop offset="1" stop-color="#8B5CF6"/>
+                    </linearGradient></defs>
+                </svg>
+            </div>
+            <span class="brand-text">CryptaVault</span>
+        </div>
+        <div class="nav-links">
+            <a href="#hero" class="nav-link active" data-section="hero">Home</a>
+            <a href="#caesar" class="nav-link" data-section="caesar">Caesar</a>
+            <a href="#vigenere" class="nav-link" data-section="vigenere">Vigenere</a>
+            <a href="#extended" class="nav-link" data-section="extended">Extended</a>
+            <a href="#lab" class="nav-link" data-section="lab">Crypto Lab</a>
+            <a href="#history" class="nav-link" data-section="history">History</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-btn" id="langToggle">UZ</button>
+            <div class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🔐 Classical Cryptography Explorer</div>
+            <h1 class="hero-title">
+                <span class="title-line" data-t="heroTitle1">The Art of</span>
+                <span class="title-line gradient-text" data-t="heroTitle2">Secret Writing</span>
+            </h1>
+            <p class="hero-subtitle" data-t="heroSubtitle">
+                Explore Caesar &amp; Vigenere ciphers — the foundations of modern cryptography.
+                Encrypt, decrypt, and visualize how ancient secrets were kept.
+            </p>
+            <div class="hero-actions">
+                <a href="#caesar" class="btn btn-primary">
+                    <span data-t="startBtn">Start Encrypting</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <a href="#history" class="btn btn-ghost">
+                    <span data-t="learnBtn">Learn History</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="2000">0</span>
+                    <span class="stat-label">Years of History</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="26">0</span>
+                    <span class="stat-label">Alphabet Shifts</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="403">0</span>
+                    <span class="stat-label">Trillion Combinations</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="cipher-wheel-container" id="heroWheel">
+                <canvas id="cipherWheelCanvas" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Caesar Cipher Section -->
+    <section class="cipher-section" id="caesar">
+        <div class="section-header">
+            <div class="section-badge">01</div>
+            <h2 class="section-title">Caesar Cipher</h2>
+            <p class="section-desc">Named after Julius Caesar, who used it to protect military messages. Each letter is shifted by a fixed number of positions in the alphabet.</p>
+        </div>
+        <div class="cipher-workspace">
+            <div class="workspace-card glass-card">
+                <div class="card-header">
+                    <div class="mode-toggle" id="caesarMode">
+                        <button class="mode-btn active" data-mode="encrypt">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v6M5 4l3-3 3 3M3 8v5a2 2 0 002 2h6a2 2 0 002-2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            Encrypt
+                        </button>
+                        <button class="mode-btn" data-mode="decrypt">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 15V9M5 12l3 3 3-3M3 8V3a2 2 0 012-2h6a2 2 0 012 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            Decrypt
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Input Text</label>
+                    <textarea class="cipher-input" id="caesarInput" placeholder="Enter your message here..." rows="4"></textarea>
+                    <div class="char-count"><span id="caesarCharCount">0</span> characters</div>
+                </div>
+                <div class="shift-control">
+                    <label class="input-label">Shift Value</label>
+                    <div class="shift-slider-wrap">
+                        <button class="shift-btn" id="caesarShiftDown">−</button>
+                        <input type="range" class="shift-slider" id="caesarShift" min="1" max="25" value="3">
+                        <button class="shift-btn" id="caesarShiftUp">+</button>
+                        <div class="shift-value" id="caesarShiftValue">3</div>
+                    </div>
+                    <div class="shift-labels">
+                        <span>1</span><span>13</span><span>25</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full" id="caesarProcess">
+                    <span class="btn-text">Encrypt Message</span>
+                    <div class="btn-particles"></div>
+                </button>
+            </div>
+            <div class="workspace-card glass-card result-card">
+                <div class="card-header">
+                    <h3 class="card-title">Result</h3>
+                    <button class="copy-btn" id="caesarCopy" title="Copy to clipboard">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="6" y="6" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 12H3a2 2 0 01-2-2V3a2 2 0 012-2h7a2 2 0 012 2v1" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </button>
+                    <button class="share-btn" id="caesarShare" title="Share message">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 9l-5-5v3H2v4h8v3l5-5z" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </button>
+                </div>
+                <div class="result-output" id="caesarOutput">
+                    <div class="empty-state">
+                        <div class="empty-icon">🔒</div>
+                        <p>Your encrypted message will appear here</p>
+                    </div>
+                </div>
+                <div class="step-viz" id="caesarSteps">
+                    <h4 class="viz-title">Step-by-Step Transformation</h4>
+                    <div class="step-container" id="caesarStepContainer"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vigenere Cipher Section -->
+    <section class="cipher-section vigenere-section" id="vigenere">
+        <div class="section-header">
+            <div class="section-badge">02</div>
+            <h2 class="section-title">Vigenere Cipher</h2>
+            <p class="section-desc">A polyalphabetic cipher using a keyword to shift each letter differently — once called "the indecipherable cipher" for its remarkable resistance to code-breaking.</p>
+        </div>
+        <div class="cipher-workspace">
+            <div class="workspace-card glass-card">
+                <div class="card-header">
+                    <div class="mode-toggle" id="vigenereMode">
+                        <button class="mode-btn active" data-mode="encrypt">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v6M5 4l3-3 3 3M3 8v5a2 2 0 002 2h6a2 2 0 002-2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            Encrypt
+                        </button>
+                        <button class="mode-btn" data-mode="decrypt">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 15V9M5 12l3 3 3-3M3 8V3a2 2 0 012-2h6a2 2 0 012 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            Decrypt
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label" data-t="inputText">Input Text</label>
+                    <textarea class="cipher-input" id="vigenereInput" data-t="inputText" placeholder="Enter your message here..." rows="4"></textarea>
+                    <div class="char-count"><span id="vigenereCharCount">0</span> characters</div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label" data-t="keywordLabel">Secret Keyword</label>
+                    <div class="keyword-input-wrap">
+                        <input type="text" class="keyword-input" id="vigenereKey" data-t="keywordLabel" placeholder="e.g. SECRET">
+                        <div class="keyword-display" id="keywordDisplay"></div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full btn-vigenere" id="vigenereProcess">
+                    <span class="btn-text" data-t="process">Encrypt Message</span>
+                </button>
+            </div>
+            <div class="workspace-card glass-card result-card">
+                <div class="card-header">
+                    <h3 class="card-title">Result</h3>
+                    <button class="copy-btn" id="vigenereCopy" title="Copy to clipboard">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="6" y="6" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 12H3a2 2 0 01-2-2V3a2 2 0 012-2h7a2 2 0 012 2v1" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </button>
+                </div>
+                <div class="result-output" id="vigenereOutput">
+                    <div class="empty-state">
+                        <div class="empty-icon">🗝️</div>
+                        <p>Your encrypted message will appear here</p>
+                    </div>
+                </div>
+                <div class="vigenere-table-wrap" id="vigenereTableWrap">
+                    <h4 class="viz-title">Vigenere Table Visualization</h4>
+                    <div class="vigenere-mini-table" id="vigenereMiniTable"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extended Ciphers Section -->
+    <section class="cipher-section extended-section" id="extended">
+        <div class="section-header">
+            <div class="section-badge">03</div>
+            <h2 class="section-title">Extended Ciphers</h2>
+            <p class="section-desc">Explore more classical methods, from simple reversals to transposition techniques used across history.</p>
+        </div>
+        <div class="cipher-workspace">
+            <div class="workspace-card glass-card">
+                <div class="card-tabs">
+                    <button class="tab-btn active" data-cipher="atbash">Atbash</button>
+                    <button class="tab-btn" data-cipher="rail">Rail Fence</button>
+                    <button class="tab-btn" data-cipher="morse">Morse Code</button>
+                </div>
+                <div class="input-group">
+                    <label class="input-label" data-t="inputText">Input Text</label>
+                    <textarea class="cipher-input" id="extInput" data-t="inputText" placeholder="Enter message..." rows="4"></textarea>
+                </div>
+                <!-- Rail Fence Specific -->
+                <div id="railControls" style="display:none;">
+                    <div class="shift-control">
+                        <label class="input-label" data-t="shiftLabel">Number of Rails</label>
+                        <div class="shift-slider-wrap">
+                            <input type="range" class="shift-slider" id="railCount" min="2" max="6" value="3">
+                            <div class="shift-value" id="railValue">3</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-full" id="extProcess">
+                    <span class="btn-text" data-t="process">Process Message</span>
+                </button>
+            </div>
+            <div class="workspace-card glass-card result-card">
+                <div class="card-header">
+                    <h3 class="card-title">Result</h3>
+                    <button class="copy-btn" id="extCopy" title="Copy to clipboard">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="6" y="6" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M4 12H3a2 2 0 01-2-2V3a2 2 0 012-2h7a2 2 0 012 2v1" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </button>
+                </div>
+                <div class="result-output" id="extOutput">
+                    <div class="empty-state">
+                        <div class="empty-icon">🌀</div>
+                        <p>Processed output will appear here</p>
+                    </div>
+                </div>
+                <div class="ext-visualizer" id="extViz"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crypto Lab & Analytics -->
+    <section class="cipher-section lab-section" id="lab">
+        <div class="section-header">
+            <div class="section-badge">04</div>
+            <h2 class="section-title">Crypto Analytics Lab</h2>
+            <p class="section-desc">Deep dive into the mathematical properties of your ciphers. Analyze frequency, entropy, and patterns.</p>
+        </div>
+        <div class="lab-grid">
+            <div class="lab-card glass-card frequency-analysis">
+                <div class="card-header">
+                    <h3 class="card-title">Frequency Analysis</h3>
+                    <div class="lab-toggle">
+                        <button class="mini-btn active" data-type="input">Input</button>
+                        <button class="mini-btn" data-type="output">Output</button>
+                    </div>
+                </div>
+                <div class="freq-chart" id="freqChart"></div>
+            </div>
+            <div class="lab-card glass-card entropy-stats">
+                <h3 class="card-title">Security Metrics</h3>
+                <div class="metric-group">
+                    <div class="metric-item">
+                        <span class="metric-label">Shannon Entropy</span>
+                        <div class="metric-progress-wrap">
+                            <div class="metric-progress" id="entropyProgress" style="width: 0%"></div>
+                        </div>
+                        <span class="metric-value" id="entropyValue">0.00 bits</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Uniqueness Distance</span>
+                        <span class="metric-value" id="uniquenessValue">Calculating...</span>
+                    </div>
+                </div>
+                <div class="pattern-list">
+                    <h4 class="viz-title">Pattern Detection</h4>
+                    <div id="patternList" class="patterns">No patterns detected.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Visualizer -->
+    <section class="cipher-section visualizer-section" id="visualizer">
+        <div class="section-header">
+            <div class="section-badge">05</div>
+            <h2 class="section-title">Cipher Visualizer</h2>
+            <p class="section-desc">Watch the cipher wheel rotate in real-time as each letter is transformed. See the magic of substitution cryptography in action.</p>
+        </div>
+        <div class="visualizer-workspace">
+            <div class="viz-wheel-card glass-card">
+                <canvas id="vizWheelCanvas" width="500" height="500"></canvas>
+                <div class="viz-controls">
+                    <div class="viz-input-group">
+                        <input type="text" id="vizInput" class="viz-text-input" placeholder="Type a letter..." maxlength="1">
+                        <div class="viz-shift-control">
+                            <label>Shift:</label>
+                            <input type="number" id="vizShift" class="viz-shift-input" min="1" max="25" value="3">
+                        </div>
+                    </div>
+                    <div class="viz-result-display">
+                        <div class="viz-letter-box">
+                            <span class="viz-letter-label">Input</span>
+                            <span class="viz-letter" id="vizInputLetter">A</span>
+                        </div>
+                        <div class="viz-arrow">→</div>
+                        <div class="viz-letter-box result">
+                            <span class="viz-letter-label">Output</span>
+                            <span class="viz-letter" id="vizOutputLetter">D</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alphabet-strip glass-card">
+                <h4 class="viz-title">Full Alphabet Mapping</h4>
+                <div class="alphabet-grid" id="alphabetGrid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="cipher-section history-section" id="history">
+        <div class="section-header">
+            <div class="section-badge">06</div>
+            <h2 class="section-title">Cryptography Through the Ages</h2>
+            <p class="section-desc">From ancient Rome to the digital age — a journey through the evolution of secret communication.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-item" data-year="58 BC">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card">
+                    <div class="timeline-year">58 BC</div>
+                    <h3>Julius Caesar's Cipher</h3>
+                    <p>Caesar used a simple substitution cipher with a shift of 3 to communicate with his generals during the Gallic Wars. "If he had anything confidential to say, he wrote it in cipher." — Suetonius</p>
+                </div>
+            </div>
+            <div class="timeline-item right" data-year="9th Century">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card">
+                    <div class="timeline-year">9th Century</div>
+                    <h3>Al-Kindi's Breakthrough</h3>
+                    <p>Arab polymath Al-Kindi wrote "A Manuscript on Deciphering Cryptographic Messages," introducing frequency analysis — the first known technique for breaking substitution ciphers.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-year="1553">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card">
+                    <div class="timeline-year">1553</div>
+                    <h3>Vigenere Cipher Born</h3>
+                    <p>Giovan Battista Bellaso first described the polyalphabetic cipher, later misattributed to Blaise de Vigenere. It remained unbroken for 300 years, earning the nickname "the indecipherable cipher."</p>
+                </div>
+            </div>
+            <div class="timeline-item right" data-year="1863">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card">
+                    <div class="timeline-year">1863</div>
+                    <h3>Kasiski Examination</h3>
+                    <p>Friedrich Kasiski published a method to break the Vigenere cipher by finding repeated sequences to determine the key length, finally cracking the "indecipherable" cipher.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-year="1918">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card">
+                    <div class="timeline-year">1918</div>
+                    <h3>The Enigma Machine</h3>
+                    <p>Arthur Scherbius invented the Enigma, a polyalphabetic electromechanical rotor cipher machine — a direct evolution of the Vigenere concept, with 158 quintillion possible settings.</p>
+                </div>
+            </div>
+            <div class="timeline-item right" data-year="Today">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card glass-card">
+                    <div class="timeline-year">Today</div>
+                    <h3>Modern Cryptography</h3>
+                    <p>AES, RSA, and quantum-resistant algorithms protect our digital world. Yet every modern cipher owes its conceptual foundation to these classical techniques — substitution and transposition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="brand-text">CryptaVault</span>
+                <p>An educational tool exploring classical cryptography — built for learning, not for securing real data.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#caesar">Caesar Cipher</a>
+                <a href="#vigenere">Vigenere Cipher</a>
+                <a href="#visualizer">Visualizer</a>
+                <a href="#history">History</a>
+            </div>
+            <div class="footer-disclaimer">
+                <h4>⚠️ Ethical Disclaimer</h4>
+                <p>This tool is for <strong>educational purposes only</strong>. Classical ciphers like Caesar and Vigenere are NOT secure for real-world use. Never use these methods to protect sensitive data. Modern encryption (AES-256, RSA) should be used for actual security needs.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CryptaVault — Educational Cryptography Tool</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
