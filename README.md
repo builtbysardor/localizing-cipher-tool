@@ -26,6 +26,10 @@
 
 <br/>
 
+![CryptaVault Demo](docs/screenshots/demo_animation.svg)
+
+<br/>
+
 **[🚀 Get Started](#-getting-started) • [✨ Features](#-features) • [📚 Education](#-educational-context) • [🛠 Tech Stack](#️-tech-stack)**
 
 </div>
@@ -34,7 +38,16 @@
 
 ---
 
-## 📸 Preview
+## 📸 Screenshots
+
+<div align="center">
+  <img src="docs/screenshots/01_hero.png" alt="Hero" width="48%" style="border-radius:8px;margin:4px;">
+  <img src="docs/screenshots/02_caesar.png" alt="Caesar Cipher" width="48%" style="border-radius:8px;margin:4px;">
+  <img src="docs/screenshots/03_vigenere.png" alt="Vigenère Cipher" width="48%" style="border-radius:8px;margin:4px;">
+  <img src="docs/screenshots/04_extended.png" alt="Extended Ciphers" width="48%" style="border-radius:8px;margin:4px;">
+  <img src="docs/screenshots/05_lab.png" alt="Crypto Lab" width="48%" style="border-radius:8px;margin:4px;">
+  <img src="docs/screenshots/06_history.png" alt="History" width="48%" style="border-radius:8px;margin:4px;">
+</div>
 
 <div align="center">
 
